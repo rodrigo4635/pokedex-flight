@@ -7,10 +7,7 @@ interface HomeState {
   page: number
   search: string
   error: string
-  sorting: {
-    open: boolean
-    value: SortingValues
-  }
+  sorting: SortingValues
 }
 
 const initialState: HomeState = {
@@ -20,10 +17,7 @@ const initialState: HomeState = {
   page: 0,
   search: '',
   error: '',
-  sorting: {
-    open: false,
-    value: "numAsc"
-  }
+  sorting: "numAsc"
 }
 
 export const homeSlice = createSlice({
@@ -53,15 +47,10 @@ export const homeSlice = createSlice({
       }
     },
     changeSort(state, action) {
-      if (action.payload) {
-        state.sorting.open = false
-        state.sorting.value = action.payload.value
-        state.page = 0
-        state.pokemons = null
-        state.allPokemons = action.payload.sortedPokemons
-      } else {
-        state.sorting.open = !state.sorting.open
-      }
+      state.sorting = action.payload.value
+      state.page = 0
+      state.pokemons = null
+      state.allPokemons = action.payload.sortedPokemons
     }
   },
 })

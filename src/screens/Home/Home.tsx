@@ -1,8 +1,9 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "utils/hooks"
 import { loadInitialData, loadMore } from "./actions"
-import { Link } from "react-router-dom"
 import Appbar from "./components/Appbar"
+import { Button, Loading, PokeCard } from "components"
+import { ButtonArea, CardsGrid } from "./styles"
 
 const HomeScreen = () => {
   const dispatch = useAppDispatch()
@@ -18,12 +19,18 @@ const HomeScreen = () => {
     dispatch(loadMore(allPokemons!, page))
   }
 
-  if (!allPokemons || !pokemons) return <h1>Loading home</h1>
+  if (!allPokemons) return <Loading/>
   return (
     <div>
       <Appbar/>
-      { pokemons.map(el => <div key={ el.name }><Link to={ `/${ el.name }`}>{ el.name }</Link></div>) }
-      { pokemons.length < allPokemons.length ? <button onClick={ handleLoadMore } disabled={ loading }>{ loading ? "loading" : "Load more"}</button> : null }
+      <CardsGrid>
+        { pokemons ? pokemons.map(el => <PokeCard { ...el } key={ el.name }/>) : <Loading/> }
+      </CardsGrid>
+      { pokemons && pokemons.length < allPokemons.length &&
+        <ButtonArea>
+          <Button label={ loading ? "loading" : "Load more" } onClick={ handleLoadMore } disabled={ loading }/>
+        </ButtonArea>
+      }
     </div>
   )
 }
