@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
+import homeReducer from '../screens/Home/slice'
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    home: homeReducer,
+  },
 })
 
 export default store
