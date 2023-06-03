@@ -8,13 +8,14 @@ import { changeValue } from "./slice"
 
 const HomeScreen = () => {
   const dispatch = useAppDispatch()
-  const { allPokemons, pokemons, loading, page, error } = useAppSelector(store => store.home)
+  const { allPokemons, pokemons, loading, page, error, search } = useAppSelector(store => store.home)
+  const listOfPokemons = search.results || pokemons
 
   useEffect(() => {
     if (!allPokemons) {
       dispatch(loadInitialData())
     }
-  }, [allPokemons])
+  }, [allPokemons, dispatch])
 
   const handleLoadMore = () => {
     dispatch(loadMore(allPokemons!, page))
@@ -29,12 +30,12 @@ const HomeScreen = () => {
     <div>
       <Appbar/>
       <CardsGrid>
-        { pokemons ?
-          pokemons.map(el => <PokeCard { ...el } key={ el.name }/>) :
+        { listOfPokemons ?
+          listOfPokemons.map(el => <PokeCard { ...el } key={ el.name }/>) :
           <Loading/>
         }
       </CardsGrid>
-      { pokemons && pokemons.length < allPokemons.length &&
+      { pokemons && !search.results && pokemons.length < allPokemons.length &&
         <ButtonArea>
           <Button
             label={ loading ? "loading" : "Load more" }

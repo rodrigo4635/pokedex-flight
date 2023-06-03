@@ -14,11 +14,12 @@ const DetailsScreen = () => {
   const dispatch = useAppDispatch()
   const paramName = useParams().name
   const pokemons = useAppSelector(state => state.home.pokemons)
+  const searchResults = useAppSelector(state => state.home.search.results)
   const { pokemon, additionalData, error } = useAppSelector(state => state.details)
 
   useEffect(() => {
-    if (pokemons) {
-      const foundPokemon = pokemons.find(el => el.name === paramName)
+    if (searchResults || pokemons) {
+      const foundPokemon = searchResults?.find(el => el.name === paramName) || pokemons?.find(el => el.name === paramName)
       dispatch(changeValue("pokemon", foundPokemon || {}))
       dispatch(loadAdditionalData(foundPokemon))
     } else {

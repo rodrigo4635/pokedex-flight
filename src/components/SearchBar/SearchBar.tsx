@@ -25,6 +25,11 @@ const SearchBar = (props: SearchBarProps) => {
     onSearch(value)
   }
 
+  const handleReset = () => {
+    onChange("")
+    onSearch("")
+  }
+
   return (
     <Wrapper>
       <Input
@@ -47,6 +52,7 @@ const SearchBar = (props: SearchBarProps) => {
           </g>
         </svg>
       </Button>
+      { value && <Button onClick={ handleReset } className="close">✕</Button> }
     </Wrapper>
   )
 }

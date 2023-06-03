@@ -9,7 +9,7 @@ export const Input = styled.input`
   font-size: inherit;
   background-color: #FFF;
   color: #646464;
-  padding: 15px 20px;
+  padding: 15px 80px 15px 20px;
   border-radius: 30px;
   transition: all ease-in-out .5s;
   width: 100%;
@@ -46,8 +46,14 @@ export const Button = styled.button`
   }
 
   .icon {
-    height: 1.3em;
-    width: 1.3em;
+    height: 1.3rem;
+    width: 1.3rem;
     fill: #b4b4b4;
+  }
+
+  &.close {
+    right: 50px;
+    font-size: 1.3rem;
+    color: #b4b4b4;
   }
 `

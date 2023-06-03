@@ -5,7 +5,10 @@ interface HomeState {
   pokemons: Pokemon[] | null
   loading: boolean
   page: number
-  search: string
+  search: {
+    value: string
+    results: Pokemon[] | null
+  }
   error: string
   sorting: SortingValues
 }
@@ -15,8 +18,11 @@ const initialState: HomeState = {
   pokemons: null,
   loading: false,
   page: 0,
-  search: '',
-  error: '',
+  search: {
+    value: "",
+    results: null
+  },
+  error: "",
   sorting: "numAsc"
 }
 
@@ -51,10 +57,14 @@ export const homeSlice = createSlice({
       state.page = 0
       state.pokemons = null
       state.allPokemons = action.payload.sortedPokemons
+    },
+    changeSearchValue(state, action) {
+      state.search.value = action.payload.value !== undefined ? action.payload.value : state.search.value
+      state.search.results = action.payload.results !== undefined ? action.payload.results : state.search.results
     }
   },
 })
 
-export const { changeValue, addPokemons, changeSort } = homeSlice.actions
+export const { changeValue, addPokemons, changeSort, changeSearchValue } = homeSlice.actions
 
 export default homeSlice.reducer

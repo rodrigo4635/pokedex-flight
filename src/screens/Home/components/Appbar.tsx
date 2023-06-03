@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "utils/hooks"
-import { changeSorting  } from "../actions"
+import { changeSorting, search  } from "../actions"
 import { DropDown, SearchBar } from "components"
-import { changeValue } from "../slice"
+import { changeSearchValue } from "../slice"
 import { StyledAppbar } from "../styles"
 
 const SORTING = [
@@ -14,7 +14,7 @@ const SORTING = [
 const Appbar = () => {
   const dispatch = useAppDispatch()
   const sorting = useAppSelector(store => store.home.sorting)
-  const search = useAppSelector(store => store.home.search)
+  const searchValue = useAppSelector(store => store.home.search.value)
   const allPokemons = useAppSelector(store => store.home.allPokemons!)
 
   const handleChangeSort = (value: string) => {
@@ -22,17 +22,21 @@ const Appbar = () => {
   }
 
   const handleChangeSearch = (value: string) => {
-    dispatch(changeValue("search", value))
+    if (value === "") {
+      dispatch(changeSearchValue({ value, results: null }))
+    } else {
+      dispatch(changeSearchValue({ value }))
+    }
   }
 
   const handleSearch = (value: string) => {
-    alert("search" + value)
+    dispatch(search(value, allPokemons))
   }
 
   return (
     <StyledAppbar>
       <SearchBar
-        value={ search }
+        value={ searchValue }
         placeholder="Search a name or number"
         onChange={ handleChangeSearch }
         onSearch={ handleSearch }

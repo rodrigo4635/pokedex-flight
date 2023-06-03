@@ -1,6 +1,6 @@
 import api from "utils/api"
 import { AppDispatch } from "utils/store"
-import { addPokemons, changeSort, changeValue } from "./slice"
+import { addPokemons, changeSearchValue, changeSort, changeValue } from "./slice"
 
 export const loadInitialData = () => {
   return (dispatch: AppDispatch) => {
@@ -66,6 +66,28 @@ export const changeSorting = (allPokemons: BasicPokemonData[], value: SortingVal
     .catch(error => {
       console.error(error)
       dispatch(changeValue("error", "Error on load pokemons"))
+    })
+  }
+}
+
+export const search = (value: string, allPokemons: BasicPokemonData[]) => {
+  return (dispatch: AppDispatch) => {
+   const trim = value.trim()
+
+   if (trim === "") {
+    dispatch(changeSearchValue({ results: null }))
+    return
+   }
+
+   const filteredPokemons = allPokemons!.filter(el => el.name.includes(value) || String(el.id).includes(value))
+
+   api.getPokemonBatch(filteredPokemons, 0)
+    .then(pokemons => {
+      dispatch(changeSearchValue({ results: pokemons }))
+    })
+    .catch(error => {
+      console.error(error)
+      dispatch(changeValue("error", "Error on search pokemons"))
     })
   }
 }
