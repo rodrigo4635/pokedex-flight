@@ -16,7 +16,7 @@ const ChipList = (props: ChipListProps) => {
       centered={ centered }
     >
       { list.map(el => (
-        <Label color={ el.color }>
+        <Label key={ el.label } color={ el.color }>
           { el.label }
         </Label>
       ))}

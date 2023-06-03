@@ -30,7 +30,7 @@ const Dropdown = (props: DropdownProps) => {
         onChange={ () => {}}
       >
         { options.map(opt => (
-          <option value={ opt.value }>
+          <option key={ opt.value } value={ opt.value }>
             { opt.label }
           </option>
         ))}
@@ -43,7 +43,7 @@ const Dropdown = (props: DropdownProps) => {
       </Label>
       <List open={ open }>
         { options.map(opt => (
-          <li onClick={ handleSelect(opt.value) }>
+          <li key={ opt.value } onClick={ handleSelect(opt.value) }>
             { opt.label }
           </li>
         ))}

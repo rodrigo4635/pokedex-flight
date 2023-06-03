@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   overflow-x: hidden;
 
   main {
-    min-height: 100vh;
+    min-height: 90vh;
   }
 
   ${ mediaQueries("medium") } {

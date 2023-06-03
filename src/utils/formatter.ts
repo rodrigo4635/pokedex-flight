@@ -1,6 +1,6 @@
 const idToName = (val: string) => {
   const upper = val.charAt(0).toUpperCase() + val.slice(1)
-  return upper.replace(/\-/, " ")
+  return upper.replace(/-/, " ")
 }
 
 const typesToLabelColor = (types: PokemonType[]) => {
@@ -18,9 +18,11 @@ const percToColor = (percent: number, start = 0, end = 100) => {
   return `rgb(${ r }, ${ g }, 0)`
 }
 
-export default {
+const formatter = {
   idToName,
   typesToLabelColor,
   valueToPerc,
   percToColor
 }
+
+export default formatter

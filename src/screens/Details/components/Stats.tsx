@@ -14,7 +14,7 @@ const Stats = (props: SmallCardProps) => {
       <StatsTable>
         <tbody>
           { stats.map(stat => (
-            <tr>
+            <tr key={ stat.stat.name }>
               <th>{ formatter.idToName(stat.stat.name) }</th>
               <td className="val">{ stat.base_stat }</td>
               <StatBar perc={ formatter.valueToPerc(stat.base_stat) }>

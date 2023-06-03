@@ -7,6 +7,10 @@ const store = configureStore({
     home: homeReducer,
     details: detailsReducer
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    immutableCheck: { warnAfter: 200 },
+    serializableCheck: { warnAfter: 200 },
+  })
 })
 
 export default store
