@@ -1,4 +1,4 @@
-# Pokedex
+# Pokédex
 This simple Pokédex was developed using ReactJS + TypeScript + Redux, along with the Poke API. The Styled-components library for styling and the React Router for routing.
 
 ## 🌐 Api

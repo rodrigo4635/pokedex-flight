@@ -72,14 +72,14 @@ export const changeSorting = (allPokemons: BasicPokemonData[], value: SortingVal
 
 export const search = (value: string, allPokemons: BasicPokemonData[]) => {
   return (dispatch: AppDispatch) => {
-   const trim = value.trim()
+   const trim = value.trim().toLowerCase()
 
    if (trim === "") {
     dispatch(changeSearchValue({ results: null }))
     return
    }
 
-   const filteredPokemons = allPokemons!.filter(el => el.name.includes(value) || String(el.id).includes(value))
+   const filteredPokemons = allPokemons!.filter(el => el.name.includes(trim) || String(el.id).includes(trim))
 
    api.getPokemonBatch(filteredPokemons, 0)
     .then(pokemons => {

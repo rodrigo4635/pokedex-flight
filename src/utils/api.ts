@@ -17,7 +17,10 @@ const api = async <T>(endpoint: string, customConfig: RequestInit = {}): Promise
     const response = await window.fetch(endpoint, config)
     
     if (!response.ok) {
-      throw { code: String(response.status), message: response.statusText }
+      throw Object.assign(
+        new Error(response.statusText || "Invalid response"),
+        { code: String(response.status) }
+      )
     }
 
     const data = await response.json() as T
@@ -37,7 +40,7 @@ api.getAllPokemons = async (limit = 151): Promise<BasicPokemonData[]> => {
   }))
 }
 
-api.getPokemonBatch = async (allPokemons: BasicPokemonData[], page = 0, limit = 30): Promise<Pokemon[]> => {
+api.getPokemonBatch = async (allPokemons: BasicPokemonData[], page = 0, limit = 32): Promise<Pokemon[]> => {
   const promises = allPokemons.slice(page * limit, (page + 1) * limit).map(async basicPokemon => {
     const result = await fetch(basicPokemon.url)
     const res = await result.json() as Pokemon
