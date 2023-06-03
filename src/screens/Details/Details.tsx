@@ -4,11 +4,9 @@ import { useAppDispatch, useAppSelector } from "utils/hooks"
 import { changeValue } from "./slice"
 import { loadAdditionalData, loadPokemon } from "./actions"
 import { Loading, ChipList } from "components"
-import { PokemonImg, SmallCardsList, Subtitle, Wrapper, Title } from "./styles"
-import SmallCard from "./components/SmallCard"
+import { PokemonImg, SmallCardsList, Subtitle, Wrapper, TitleWrapper } from "./styles"
 import { formatter } from "utils"
-import Story from "./components/Story"
-import Stats from "./components/Stats"
+import { Stats, Story, SmallCard } from "./components"
 
 const getGenera = (genera: PokemonGenera[]) => genera.find(el => el.language.name === "en")?.genus.split(" ")[0] || "Unknowm"
 
@@ -38,36 +36,42 @@ const DetailsScreen = () => {
 
   const { abilities, name, id, types, sprites, height, weight, base_experience, stats } = pokemon
   const { genera, growth_rate, habitat, capture_rate, flavor_text_entries } = additionalData
+  const formattedAbilities = abilities.map(el => ({ label: el.ability.name }))
 
   return (
     <Wrapper>
-      <Link className="go-back" to="/">Pokédex</Link>
+      <Link
+        className="go-back"
+        to="/"
+      >
+        Pokédex
+      </Link>
       <div className="content">
         <div>
-          <Title>
-            <h1>{formatter.idToName(name)}</h1>
-            <h3>#{id}</h3>
-          </Title>
-          <ChipList list={formatter.typesToLabelColor(types)} />
+          <TitleWrapper>
+            <h1>{ formatter.idToName(name) }</h1>
+            <h3>#{ id }</h3>
+          </TitleWrapper>
+          <ChipList list={ formatter.typesToLabelColor(types) } />
           <PokemonImg>
-            <img src={sprites.other.dream_world.front_default} alt={name} />
+            <img src={ sprites.other.dream_world.front_default } alt={ name } />
           </PokemonImg>
-          <Story entries={flavor_text_entries} />
+          <Story entries={ flavor_text_entries } />
         </div>
         <div>
           <Subtitle>Infos</Subtitle>
           <SmallCardsList>
-            <SmallCard label="Height" value={`${height / 10} m`} />
-            <SmallCard label="Category" value={getGenera(genera)} />
-            <SmallCard label="Weight" value={`${weight / 10} kg`} />
-            <SmallCard label="Base Ep." value={base_experience} />
-            <SmallCard label="Growth R." value={formatter.idToName(growth_rate.name)} />
-            <SmallCard label="Habitat" value={formatter.idToName(habitat.name)} />
-            <SmallCard label="Catch R." value={capture_rate} />
+            <SmallCard label="Height" value={ `${ height / 10 } m` } />
+            <SmallCard label="Category" value={ getGenera(genera) } />
+            <SmallCard label="Weight" value={ `${ weight / 10 } kg` } />
+            <SmallCard label="Base Ep." value={ base_experience } />
+            <SmallCard label="Growth R." value={ formatter.idToName(growth_rate.name) } />
+            <SmallCard label="Habitat" value={ formatter.idToName(habitat.name) } />
+            <SmallCard label="Catch R." value={ capture_rate } />
           </SmallCardsList>
           <Subtitle>Abilities</Subtitle>
-          <ChipList list={abilities.map(el => ({ label: el.ability.name }))} />
-          <Stats stats={stats} />
+          <ChipList list={ formattedAbilities } />
+          <Stats stats={ stats } />
         </div>
       </div>
     </Wrapper>

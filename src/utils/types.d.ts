@@ -1,3 +1,5 @@
+type SortingValues = "numAsc" | "numDesc" | "nameAsc" | "nameDesc"
+
 interface NameAndUrl {
   name: string
   url: string
@@ -7,6 +9,28 @@ interface PokemonStat {
   base_stat: number
   effort: number
   stat: NameAndUrl
+}
+
+interface PokemonGenera {
+  genus: string
+  language: NameAndUrl
+}
+
+interface PokemonFlavourText {
+  flavor_text: string
+  language: NameAndUrl
+  version: NameAndUrl
+}
+
+interface PokemonType {
+  slot: number
+  type: NameAndUrl
+}
+
+interface BasicPokemonData {
+  name: string
+  url: string
+  id: string
 }
 
 interface Pokemon {
@@ -45,30 +69,8 @@ interface Pokemon {
     versions: any
   }
   stats: PokemonStat[]
-  types: PokemonTypes[]
+  types: PokemonType[]
   weight: number
-}
-
-interface BasicPokemon {
-  name: string
-  url: string
-  id: string
-}
-
-interface PokemonGenera {
-  genus: string
-  language: NameAndUrl
-}
-
-interface PokemonFlavourText {
-  flavor_text: string
-  language: NameAndUrl
-  version: NameAndUrl
-}
-
-interface PokemonTypes {
-  slot: number;
-  type: NameAndUrl;
 }
 
 interface AdditionalPokemonData {
@@ -87,7 +89,3 @@ interface AdditionalPokemonData {
   is_legendary: boolean
   is_mythical: boolean
 }
-
-
-
-type SortingValues = "numAsc" | "numDesc" | "nameAsc" | "nameDesc"

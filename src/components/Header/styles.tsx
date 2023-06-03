@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import mediaQueries from "styles/mediaQueries"
 
-export const StyledHeader = styled.nav`
+export const Wrapper = styled.nav`
   height: 40px;
   background-color: #d14444;
   position: fixed;

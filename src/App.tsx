@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import store from './utils/store'
 import { Layout } from "components"
 
-function App() {
+const App = () => {
   return (
     <Provider store={ store }>
       <BrowserRouter>

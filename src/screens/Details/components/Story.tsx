@@ -10,18 +10,23 @@ interface StoryProps {
 const Story = (props: StoryProps) => {
   const { entries } = props
   const enEntries = entries.filter(el => el.language.name === "en")
+  const dropDownOptions = enEntries.map(el => ({ label: formatter.idToName(el.version.name), value: el.version.name }))
   const [selectedType, setSelectedType] = useState(enEntries[0].version.name)
-  const text = enEntries.find(el => el.version.name === selectedType)?.flavor_text || "Sample text"
+  const text = enEntries.find(el => el.version.name === selectedType)?.flavor_text || "Nothing to show here"
 
   return (
     <StoryWrapper>
       <div>
         <Subtitle>Story</Subtitle>
-        <DropDown onSelect={ val => setSelectedType(val) } selected={ selectedType } options={ enEntries.map(el => ({ label: formatter.idToName(el.version.name), value: el.version.name }))}/>
+        <DropDown
+          onSelect={ val => setSelectedType(val) }
+          selected={ selectedType }
+          options={ dropDownOptions }
+        />
       </div>
       <p>{ text }</p>
     </StoryWrapper>
   )
 }
 
-export default Story;
+export default Story

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
-import { StyledHeader } from "./styles"
+import { Wrapper } from "./styles"
 
 const Header = () => {
   return (
-    <StyledHeader>
+    <Wrapper>
       <Link to="/">
-        <img src={ require("assets/nav-buttons.png")}/>
+        <img src={ require("assets/nav-buttons.png") }/>
       </Link>
-    </StyledHeader>
+    </Wrapper>
   )
 }
 

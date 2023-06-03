@@ -8,42 +8,42 @@ export const loadInitialData = () => {
     .then(allPokemons => {
       dispatch(changeValue("allPokemons", allPokemons))
 
-      return api.getPokemonList(allPokemons, 0)
+      return api.getPokemonBatch(allPokemons, 0)
     })
     .then(pokemons => {
       dispatch(addPokemons(pokemons))
     })
     .catch(error => {
       console.error(error)
-      dispatch(changeValue("error", "Error while loading pokemons"))
+      dispatch(changeValue("error", "Error on load pokemons"))
     })
   }
 }
 
-export const loadMore = (allPokemons: BasicPokemon[], page: number) => {
+export const loadMore = (allPokemons: BasicPokemonData[], page: number) => {
   return (dispatch: AppDispatch) => {
     dispatch(changeValue("loading", true))
     
-    api.getPokemonList(allPokemons, page)
+    api.getPokemonBatch(allPokemons, page)
     .then(pokemons => {
       dispatch(addPokemons(pokemons))
     })
     .catch(error => {
       console.error(error)
-      dispatch(changeValue("error", "Error while loading pokemons"))
+      dispatch(changeValue("error", "Error on load more pokemons"))
       dispatch(changeValue("loading", false))
     })
   }
 }
 
-export const changeSorting = (allPokemons: BasicPokemon[], value: SortingValues) => {
+export const changeSorting = (allPokemons: BasicPokemonData[], value: SortingValues) => {
   return (dispatch: AppDispatch) => {
     let sortedPokemons = [...allPokemons]
 
     switch (value) {
       case "nameAsc":
         sortedPokemons.sort((a, b) => a.name.localeCompare(b.name))
-        break;
+        break
       case "nameDesc":
         sortedPokemons.sort((a, b) => b.name.localeCompare(a.name))
         break
@@ -54,18 +54,18 @@ export const changeSorting = (allPokemons: BasicPokemon[], value: SortingValues)
         sortedPokemons.sort((a, b) => parseInt(b.id) - parseInt(a.id))
         break
       default:
-        break;
+        break
     }
 
     dispatch(changeSort({ value, sortedPokemons }))
 
-    api.getPokemonList(sortedPokemons, 0)
+    api.getPokemonBatch(sortedPokemons, 0)
     .then(pokemons => {
       dispatch(addPokemons(pokemons))
     })
     .catch(error => {
       console.error(error)
-      dispatch(changeValue("error", "Error while loading pokemons"))
+      dispatch(changeValue("error", "Error on load pokemons"))
     })
   }
 }

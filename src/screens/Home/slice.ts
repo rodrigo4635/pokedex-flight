@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface HomeState {
-  allPokemons: BasicPokemon[] | null
+  allPokemons: BasicPokemonData[] | null
   pokemons: Pokemon[] | null
   loading: boolean
   page: number
@@ -26,7 +26,7 @@ export const homeSlice = createSlice({
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ property: keyof HomeState, value: any}>) {
-        const { property, value } = action.payload;
+        const { property, value } = action.payload
         return { ...state, [property]: value }
       },
       prepare(property: keyof HomeState, value: any) {

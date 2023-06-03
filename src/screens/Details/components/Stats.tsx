@@ -1,5 +1,5 @@
 import { formatter } from "utils"
-import { StatBar, StatsTable, StatsWrapper, Subtitle } from "../styles"
+import { StatBar, StatsTable, Subtitle } from "../styles"
 
 interface SmallCardProps {
   stats: PokemonStat[]
@@ -9,7 +9,7 @@ const Stats = (props: SmallCardProps) => {
   const { stats } = props
 
   return (
-    <StatsWrapper>
+    <div>
       <Subtitle>Stats</Subtitle>
       <StatsTable>
         <tbody>
@@ -17,7 +17,7 @@ const Stats = (props: SmallCardProps) => {
             <tr>
               <th>{ formatter.idToName(stat.stat.name) }</th>
               <td className="val">{ stat.base_stat }</td>
-              <StatBar perc={ formatter.statToPerc(stat.base_stat) }>
+              <StatBar perc={ formatter.valueToPerc(stat.base_stat) }>
                 <div/>
                 <div className="filled"/>
               </StatBar>
@@ -25,8 +25,8 @@ const Stats = (props: SmallCardProps) => {
           ))}
         </tbody>
       </StatsTable>
-    </StatsWrapper>
+    </div>
   )
 }
 
-export default Stats;
+export default Stats

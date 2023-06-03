@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     display: none;
   }
 
-  p {
+  .label {
     white-space: nowrap;
     margin-right: 5px;
   }

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import pokemonTypeColor from "styles/pokemonTypeColor"
 
 export const Wrapper = styled.div`
   position: relative;
@@ -57,13 +56,4 @@ export const Img = styled.img`
   left: 50%;
   translate: -50% 0;
   transition: top .3s;
-`
-
-export const TypeLabel = styled.p<{ tp: string }>`
-  background-color: ${ props => pokemonTypeColor[props.tp] };
-  padding: 5px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: .7rem;
 `

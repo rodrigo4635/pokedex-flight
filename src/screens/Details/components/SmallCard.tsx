@@ -16,4 +16,4 @@ const SmallCard = (props: SmallCardProps) => {
   )
 }
 
-export default SmallCard;
+export default SmallCard

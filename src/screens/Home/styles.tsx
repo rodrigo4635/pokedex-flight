@@ -21,7 +21,7 @@ export const CardsGrid = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  ${ mediaQueries("huge") } {
+  ${ mediaQueries("xlarge") } {
     grid-template-columns: repeat(4, 1fr);
   }
 `

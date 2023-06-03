@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
   }
   
 `
-export const Title = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 0;
@@ -70,6 +70,22 @@ export const SmallCardsList = styled.div`
 
   ${ mediaQueries("large") } {
     grid-template-columns: repeat(4, 1fr);
+  }
+`
+export const SmallCardWrapper = styled.div`
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  max-width: 100px;
+
+  p {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .label {
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 `
 
@@ -109,27 +125,6 @@ export const StatBar = styled.td<{ perc: number }>`
     translate: 0 -50%;
     position: absolute;
   }
-`
-
-export const SmallCardWrapper = styled.div`
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  max-width: 100px;
-
-  p {
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .label {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-`
-
-export const StatsWrapper = styled.div`
-
 `
 
 export const StoryWrapper = styled.div`

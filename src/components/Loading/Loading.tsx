@@ -3,7 +3,7 @@ import { Wrapper } from "./styles"
 const Loading = () => {
   return (
     <Wrapper>
-      <img src={ require("assets/loading.gif")}/>
+      <img src={ require("assets/loading.gif") }/>
     </Wrapper>
   )
 }

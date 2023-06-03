@@ -31,8 +31,18 @@ const Appbar = () => {
 
   return (
     <StyledAppbar>
-      <SearchBar value={ search } placeholder="Search a name or number" onChange={ handleChangeSearch } onSearch={ handleSearch }/>
-      <DropDown label="Sort by:" options={ SORTING } selected={ sorting } onSelect={ handleChangeSort }/>
+      <SearchBar
+        value={ search }
+        placeholder="Search a name or number"
+        onChange={ handleChangeSearch }
+        onSearch={ handleSearch }
+      />
+      <DropDown
+        label="Sort by:"
+        options={ SORTING }
+        selected={ sorting }
+        onSelect={ handleChangeSort }
+      />
     </StyledAppbar>
   )
 }

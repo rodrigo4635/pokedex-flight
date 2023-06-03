@@ -19,4 +19,4 @@ const types: { [key: string]: string } = {
 	fairy: '#D685AD',
 }
 
-export default types;
+export default types

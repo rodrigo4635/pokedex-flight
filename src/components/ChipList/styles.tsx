@@ -7,6 +7,7 @@ export const Wrapper = styled.div<{ centered?: boolean }>`
   align-items: center;
   gap: 5px;
 `
+
 export const Label = styled.p<{ color?: string }>`
   background-color: ${ props => props.color ? pokemonTypeColor[props.color] : "white" };
   border: ${ props => props.color ? "none" : "1px solid #ddd" };

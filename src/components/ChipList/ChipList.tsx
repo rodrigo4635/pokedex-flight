@@ -1,6 +1,6 @@
 import { Label, Wrapper } from "./styles"
 
-interface PokeTypeListProps {
+interface ChipListProps {
   centered?: boolean
   list: {
     label: string
@@ -8,14 +8,20 @@ interface PokeTypeListProps {
   }[]
 }
 
-const PokeTypeList = (props: PokeTypeListProps) => {
+const ChipList = (props: ChipListProps) => {
   const { list, centered } = props
 
   return (
-    <Wrapper centered={ centered }>
-      { list.map(el => <Label color={ el.color }>{ el.label }</Label>) }
+    <Wrapper
+      centered={ centered }
+    >
+      { list.map(el => (
+        <Label color={ el.color }>
+          { el.label }
+        </Label>
+      ))}
     </Wrapper>
   )
 }
 
-export default PokeTypeList;
+export default ChipList

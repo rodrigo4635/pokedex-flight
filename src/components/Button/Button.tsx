@@ -10,7 +10,10 @@ const Dropdown = (props: ButtonProps) => {
   const { label, onClick, disabled } = props
 
   return (
-    <StyledButton onClick={ onClick } disabled={ disabled }>
+    <StyledButton
+      onClick={ onClick }
+      disabled={ disabled }
+    >
       <span>{ label }</span>
     </StyledButton>
   )

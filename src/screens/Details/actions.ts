@@ -14,7 +14,8 @@ export const loadPokemon = (name: string) => {
         dispatch(changeValue("pokemon", {}))
         dispatch(changeValue("additionalData", {}))
       } else {
-        dispatch(changeValue("error", "Error while loading pokemon: " + error.message))
+        console.error(error)
+        dispatch(changeValue("error", "Error on load pokemon"))
       }
     })
   }
@@ -32,8 +33,9 @@ export const loadAdditionalData = (pokemon?: Pokemon) => {
       dispatch(changeValue("additionalData", addData))
     })
     .catch(error => {
+      console.error(error)
       dispatch(changeValue("additionalData", {}))
-      dispatch(changeValue("error", "Error while loading additional pokemon data: " + error.message))
+      dispatch(changeValue("error", "Error on load additional pokemon data"))
     })
   }
 }

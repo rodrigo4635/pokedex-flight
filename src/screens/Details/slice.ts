@@ -18,7 +18,7 @@ export const detailsSlice = createSlice({
   reducers: {
     changeValue: {
       reducer(state, action: PayloadAction<{ property: keyof DetailsState, value: any}>) {
-        const { property, value } = action.payload;
+        const { property, value } = action.payload
         return { ...state, [property]: value }
       },
       prepare(property: keyof DetailsState, value: any) {
