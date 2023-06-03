@@ -1,12 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface DetailsState {
-  data: Pokemon | null
+  pokemon: Pokemon | null
+  additionalData: AdditionalPokemonData | null
   error: string
 }
 
 const initialState: DetailsState = {
-  data: null,
+  pokemon: null,
+  additionalData: null,
   error: ""
 }
 

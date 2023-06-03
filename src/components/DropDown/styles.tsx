@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   position: relative;
   min-height: 50px;
   margin-top: 10px;
+  min-width: 100px;
 
   ${ mediaQueries("medium") } {
     margin-top: 0;
@@ -26,7 +27,7 @@ export const Label = styled.label<{ open: boolean }>`
   cursor: pointer;
   font-weight: bold;
   width: 100%;
-  padding-right: 10px;
+  padding-right: 20px;
   
   &:after {
     position: absolute;
@@ -58,7 +59,10 @@ export const List = styled.ul<{ open: boolean }>`
   padding: 10px;
   background-color: white;
   z-index: 8;
-  
+  min-width: fit-content;
+  max-height: 200px;
+  overflow-y: scroll;
+
   ${ mediaQueries("medium") } {
     top: 50px;
   }
@@ -66,6 +70,7 @@ export const List = styled.ul<{ open: boolean }>`
   li {
     padding: 10px 5px;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
       background-color: #f5f5f5;

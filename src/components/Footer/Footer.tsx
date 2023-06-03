@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        <Message>Developer by Rodrigo Pasini de Souza 🖤</Message>
+        <Message>Developer by Rodrigo Pasini de Souza :D</Message>
       </footer>
     </div>
   )

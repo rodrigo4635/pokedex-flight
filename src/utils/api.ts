@@ -1,4 +1,5 @@
 const POKEMON_BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+const POKEMON_SPECIES_URL = 'https://pokeapi.co/api/v2/pokemon-species'
 
 const api = async <T>(endpoint: string, customConfig: RequestInit = {}): Promise<T> => {
   const headers = { 'Content-Type': 'application/json' }
@@ -51,8 +52,9 @@ api.getPokemon = async (idOrName: string | number) => {
   return pokemon
 }
 
-api.searchPokemon = async (value: string) => {
-  return []
+api.getAdditionalPokemonData = async (idOrName: string | number) => {
+  const additionalData = await api<AdditionalPokemonData>(`${ POKEMON_SPECIES_URL }/${ idOrName }`)
+  return additionalData
 }
 
 export default api
