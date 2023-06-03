@@ -1,4 +1,7 @@
-# Pokédex
+<img src="./docs/banner.png" width="100%" height="auto">
+
+<h1 style="text-align: center; font-weight: bold; margin-top: 50px;">Pokédex</h1>
+
 This simple Pokédex was developed using ReactJS + TypeScript + Redux, along with the Poke API. The Styled-components library for styling and the React Router for routing.
 
 ## 🌐 Api
