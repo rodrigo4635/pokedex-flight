@@ -3,10 +3,10 @@ import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "utils/hooks"
 import { changeValue } from "./slice"
 import { loadAdditionalData, loadPokemon } from "./actions"
-import { Loading, ChipList } from "components"
+import { Loading, ChipList, ErrorBar } from "components"
 import { PokemonImg, SmallCardsList, Subtitle, Wrapper, TitleWrapper } from "./styles"
 import { formatter } from "utils"
-import { Stats, Story, SmallCard } from "./components"
+import { Stats, Story, SmallCard, InvalidPokemon } from "./components"
 
 const getGenera = (genera: PokemonGenera[]) => genera.find(el => el.language.name === "en")?.genus.split(" ")[0] || "Unknowm"
 
@@ -14,7 +14,7 @@ const DetailsScreen = () => {
   const dispatch = useAppDispatch()
   const paramName = useParams().name
   const pokemons = useAppSelector(state => state.home.pokemons)
-  const { pokemon, additionalData } = useAppSelector(state => state.details)
+  const { pokemon, additionalData, error } = useAppSelector(state => state.details)
 
   useEffect(() => {
     if (pokemons) {
@@ -29,10 +29,15 @@ const DetailsScreen = () => {
       dispatch(changeValue("pokemon", null))
       dispatch(changeValue("additionalData", null))
     }
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) 
+
+  const handleCloseError = () => {
+    dispatch(changeValue("error", ""))
+  }
 
   if (!pokemon || !additionalData) return <Loading />
-  if (!pokemon.name) return <h1>invalid pokemon</h1>
+  if (!pokemon.name) return <InvalidPokemon/>
 
   const { abilities, name, id, types, sprites, height, weight, base_experience, stats } = pokemon
   const { genera, growth_rate, habitat, capture_rate, flavor_text_entries } = additionalData
@@ -74,6 +79,7 @@ const DetailsScreen = () => {
           <Stats stats={ stats } />
         </div>
       </div>
+      <ErrorBar value={ error } onClose={ handleCloseError }/>
     </Wrapper>
   )
 }

@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Wrapper>
       <Link to="/">
-        <img src={ require("assets/nav-buttons.png") }/>
+        <img src={ require("assets/images/nav-buttons.png") } alt="Pokedex buttons"/>
       </Link>
     </Wrapper>
   )

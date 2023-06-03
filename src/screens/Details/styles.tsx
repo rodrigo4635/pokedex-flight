@@ -138,3 +138,18 @@ export const StoryWrapper = styled.div`
     margin: 0;
   }
 `
+
+export const InvalidPokemonWrapper = styled.div`
+  margin-top: 60px;
+
+  p {
+    text-align: center;
+
+    &:first-of-type {
+      font-size: 8rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: #999;
+    }
+  }
+`
